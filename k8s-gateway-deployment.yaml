@@ -1,13 +1,7 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: gateway
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: gateway-service
-  namespace: gateway
   labels:
     app: gateway-service
 spec:
@@ -25,20 +19,16 @@ spec:
           image: marammanai/gateway-service:latest
           ports:
             - containerPort: 8080
-          env:
-            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
-              value: http://discovery-service.discovery.svc.cluster.local:8761/eureka/
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: gateway-service
-  namespace: gateway
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: gateway-service
   ports:
     - port: 8080
       targetPort: 8080
-      nodePort: 30093  # Accès via http://<VM_IP>:30093
