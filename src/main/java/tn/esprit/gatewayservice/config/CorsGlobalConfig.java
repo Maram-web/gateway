@@ -15,10 +15,17 @@ public class CorsGlobalConfig {
     @Bean
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:4200")); // ✅ Pas "*"
+
+        // ✅ Utiliser allowedOriginPatterns pour autoriser plusieurs environnements
+        config.setAllowedOriginPatterns(List.of(
+                "http://localhost:4200",       // Pour le dev local
+                "http://192.168.13.11:30090",  // Frontend déployé (K8s NodePort)
+                "http://your-domain.com"       // (Optionnel) Domaine de production
+        ));
+
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(true); // ✅ obligatoire avec withCredentials
+        config.setAllowCredentials(true); // Important si tu utilises les tokens ou cookies
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
