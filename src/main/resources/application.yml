@@ -14,7 +14,7 @@ spring:
 
       routes:
         - id: user-service
-          uri: http://user-service.user.svc.cluster.local:8080
+          uri: http://user-service.user.svc.cluster.local:8089
           predicates:
             - Path=/api/auth/**
 
