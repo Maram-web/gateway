@@ -1,3 +1,6 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: gateway-service
@@ -8,17 +11,28 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
+
+      routes:
+        - id: user-service
+          uri: http://user-service.user.svc.cluster.local:8080
+          predicates:
+            - Path=/api/auth/**
+
       globalcors:
         corsConfigurations:
           '[/**]':
-            allowedOrigins: "http://192.168.13.11:30090"
+            allowedOriginPatterns: # 🔁 remplacé allowedOrigins
+              - "http://localhost:4200"           # Pour local dev
+              - "http://192.168.13.11:30090"      # Frontend Angular (déployé)
+              - "http://your-domain.com"          # (optionnel)
             allowedMethods:
               - GET
               - POST
               - PUT
               - DELETE
               - OPTIONS
-            allowedHeaders: "*"
+            allowedHeaders:
+              - "*"
             allowCredentials: true
 
 eureka:

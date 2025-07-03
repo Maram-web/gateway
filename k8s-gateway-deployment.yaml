@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: gateway-service
-          image: marammanai/gateway-service:latest # 🟡 ATTENTION : remplacé dynamiquement dans le pipeline par sed
+          image: marammanai/gateway-service:latest # sera remplacé dynamiquement par Jenkins
           ports:
             - containerPort: 8080
           env:
