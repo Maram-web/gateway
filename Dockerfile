@@ -16,4 +16,4 @@ COPY --from=build /app/src/main/resources/application.yml ./config/application.y
 ENV SPRING_PROFILES_ACTIVE=default
 
 # Démarrage
-ENTRYPOINT ["java", "-jar", "app.jar", "--spring.config.location=classpath:/config/application.yml"]
+ENTRYPOINT ["java", "-jar", "app.jar", "--spring.config.location=file:./config/application.yml"]
