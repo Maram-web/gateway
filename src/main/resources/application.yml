@@ -8,6 +8,18 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://192.168.13.11:30090"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
 
 eureka:
   client:
@@ -15,4 +27,3 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://discovery-service.discovery.svc.cluster.local:8761/eureka/}
-
