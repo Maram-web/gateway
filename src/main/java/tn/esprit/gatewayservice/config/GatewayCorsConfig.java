@@ -10,7 +10,7 @@ import java.util.List;
 
 @Configuration
 public class GatewayCorsConfig {
-
+/*
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
@@ -29,5 +29,5 @@ public class GatewayCorsConfig {
         source.registerCorsConfiguration("/**", config);
 
         return source;
-    }
+    }*/
 }
