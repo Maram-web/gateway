@@ -21,7 +21,7 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-            allowedOriginPatterns: # 🔁 remplacé allowedOrigins
+            allowedOrigins: # 🔁 remplacé allowedOrigins
               - "http://localhost:4200"           # Pour local dev
               - "http://192.168.13.11:30090"      # Frontend Angular (déployé)
               - "http://your-domain.com"          # (optionnel)
