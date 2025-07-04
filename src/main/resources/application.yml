@@ -17,6 +17,11 @@ spring:
           uri: http://user-service.user.svc.cluster.local:8089
           predicates:
             - Path=/api/auth/**
+        - id: storage-service
+          uri: http://storage-service.user.svc.cluster.local:8080
+          predicates:
+            - Path=/api/storage/**
+
 
       globalcors:
         corsConfigurations:
