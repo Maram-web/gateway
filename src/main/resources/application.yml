@@ -18,7 +18,7 @@ spring:
           predicates:
             - Path=/api/auth/**
         - id: storage-service
-          uri: http://storage-service.user.svc.cluster.local:8080
+          uri: http://storage-service.storage.svc.cluster.local:8090
           predicates:
             - Path=/api/storage/**
 
