@@ -1,48 +1,21 @@
-server:
-  port: 8080
-
 spring:
-  application:
-    name: gateway-service
-
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-
       routes:
         - id: user-service
           uri: http://user-service.user.svc.cluster.local:8089
           predicates:
             - Path=/api/auth/**
+
         - id: storage-service
           uri: http://storage-service.storage.svc.cluster.local:8090
           predicates:
             - Path=/api/storage/**
 
-
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins: # 🔁 remplacé allowedOrigins
-              - "http://localhost:4200"           # Pour local dev
-              - "http://192.168.13.11:30090"      # Frontend Angular (déployé)
-              - "http://your-domain.com"          # (optionnel)
-            allowedMethods:
-              - GET
-              - POST
-              - PUT
-              - DELETE
-              - OPTIONS
-            allowedHeaders:
-              - "*"
-            allowCredentials: true
-
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://discovery-service.discovery.svc.cluster.local:8761/eureka/}
+        # ✅ Ajoute cette route pour le CephTestController
+        - id: storage-s3-route
+          uri: http://storage-service.storage.svc.cluster.local:8090
+          predicates:
+            - Path=/api/s3/**
+          filters:
+            - StripPrefix=1
