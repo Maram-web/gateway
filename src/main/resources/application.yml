@@ -18,4 +18,4 @@ spring:
           predicates:
             - Path=/api/s3/**
           filters:
-            - StripPrefix=1
+            - StripPrefix=2
