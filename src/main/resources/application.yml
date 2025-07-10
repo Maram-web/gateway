@@ -19,3 +19,7 @@ spring:
             - Path=/api/s3/**
 #          filters:
 #            - PreserveHost=true
+        - id: vm-service
+          uri: http://vm-service.vm.svc.cluster.local:8082
+          predicates:
+            - Path=/api/vm/**
