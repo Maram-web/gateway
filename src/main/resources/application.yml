@@ -5,22 +5,22 @@ spring:
     gateway:
       routes:
         - id: user-service
-          uri: lb://user-service
+          uri: http://user-service.user.svc.cluster.local:8089
           predicates:
             - Path=/api/auth/**
 
         - id: storage-service
-          uri: lb://storage-service
+          uri: http://storage-service.storage.svc.cluster.local:8090
           predicates:
             - Path=/api/storage/**
 
         - id: storage-s3-route
-          uri: lb://storage-service
+          uri: http://storage-service.storage.svc.cluster.local:8090
           predicates:
             - Path=/api/s3/**
 
         - id: vm-service
-          uri: lb://vm-service
+          uri: http://vm-service.vm.svc.cluster.local:8082
           predicates:
             - Path=/api/vm/**
 
