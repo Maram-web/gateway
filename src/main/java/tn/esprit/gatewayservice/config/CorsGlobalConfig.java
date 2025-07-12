@@ -18,10 +18,12 @@ public class CorsGlobalConfig {
 
         // ✅ Utiliser allowedOriginPatterns pour autoriser plusieurs environnements
         config.setAllowedOriginPatterns(List.of(
-                "http://localhost:4200",       // Pour le dev local
-                "http://192.168.13.11:30090",  // Frontend déployé (K8s NodePort)
-                "http://your-domain.com"       // (Optionnel) Domaine de production
+                "http://localhost:*",
+                "http://192.168.13.*:*",  // pour tous les ports des IP du cluster
+                "http://*.local",
+                "http://*.*.*.*:*"        // facultatif si tu veux tout autoriser temporairement
         ));
+
 
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
