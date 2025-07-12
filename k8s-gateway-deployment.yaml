@@ -26,8 +26,11 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: SPRING_PROFILE
+            - name: SPRING_PROFILES_ACTIVE
               value: k8s
+            - name: EUREKA_URL
+              value: http://discovery-service.discovery.svc.cluster.local:8761/eureka
+
 
 ---
 apiVersion: v1
