@@ -23,6 +23,11 @@ spring:
           uri: http://vm-service.vm.svc.cluster.local:8082
           predicates:
             - Path=/api/vm/**
+        - id: forum-service
+          uri: http://forum-service.forum.svc.cluster.local:8088
+          predicates:
+            - Path=/api/forum/**
+
 
 eureka:
   client:
